@@ -34,9 +34,10 @@ jobs:
       - name: Run make format
         run: |
           make format
-      - name: Run make test
-        run: |
-          make test
+      # - name: Run make test
+      #   run: |
+      #     make test
+      #     make test does not exist
       - name: Run make docs
         run: |
           make docs
