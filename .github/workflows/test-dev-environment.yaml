@@ -4,7 +4,7 @@ on:
     inputs:
       test-platforms:
         type: string
-        default: '["ubuntu-22.04", "ubuntu-22.04-arm", "ubuntu-24.04", "ubuntu-24.04-arm" "debian-latest"]'
+        default: '["ubuntu-22.04", "ubuntu-22.04-arm", "ubuntu-24.04", "ubuntu-24.04-arm", "debian-latest"]'
         description: |
           The platforms to run fast tests on, as a JSON array.
       use-lxd:
