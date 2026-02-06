@@ -1,5 +1,5 @@
 name: Test dev environment
-on: pull_request
+on: [pull_request, push, workflow_call]
 jobs:
   run:
     uses: ./.github/workflows/test-dev-environment.yaml
