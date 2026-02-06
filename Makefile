@@ -23,7 +23,7 @@ format:
 	$(PRETTIER) --write $(PRETTIER_FILES)
 
 .PHONY: setup
-setup: setup-lint
+setup: setup-lint setup-docs
 ## setup: Install the necessary tools for linting and testing.
 
 .PHONY: setup-lint
