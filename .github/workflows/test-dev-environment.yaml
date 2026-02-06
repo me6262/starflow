@@ -1,6 +1,6 @@
 name: Test Dev Environment
 on:
-  workflow_call: 
+  workflow_call:
     inputs:
       test-platforms:
         type: string
