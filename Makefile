@@ -41,6 +41,7 @@ else ifneq ($(shell which snap),)
 ifneq ($(shell which yq),)
 else ifneq ($(shell which snap),)
 	sudo snap install yq
+endif
 else
 	$(error Cannot find shellcheck. Please install it on your system.)
 endif
