@@ -33,6 +33,9 @@ jobs:
       - name: push repo into LXD container
         run: |
           lxc file push -r . u1/root
+      - name: Install Make in LXD Container
+        run: |
+          lxc exec u1 -- bash -c "apt-get install -y make"
       - name: Run make setup
         run: |
           lxc exec u1 -- bash -c "cd starflow; make setup"
@@ -42,10 +45,6 @@ jobs:
       - name: Run make format
         run: |
           lxc exec u1 -- bash -c "cd starflow; make format"
-          # - name: Run make test
-          #   run: |
-          #     make test
-          #     make test does not exist
       - name: Run make docs
         run: |
           lxc exec u1 -- bash -c "cd starflow; make docs"
