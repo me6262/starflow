@@ -21,23 +21,29 @@ jobs:
 
     runs-on: "${{ matrix.platform }}"
     steps:
-      - name: Checkout code
+      - name: Setup LXD
+        uses: canonical/setup-lxd@main
+      - name: Start Container
+        run: |
+          lxc launch ubuntu-24.04 u1
+      - name: Clone repo
         uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
+      - name: push repo into LXD container
+        run: |
+          lxc file push -r starflow u1/root
       - name: Run make setup
         run: |
-          make setup
+          lxc exec u1 -- bash -c "cd starflow; make setup"
       - name: Run make lint
         run: |
-          make lint
+          lxc exec u1 -- bash -c "cd starflow; make lint"
       - name: Run make format
         run: |
-          make format
-      # - name: Run make test
-      #   run: |
-      #     make test
-      #     make test does not exist
+          lxc exec u1 -- bash -c "cd starflow; make format"
+          # - name: Run make test
+          #   run: |
+          #     make test
+          #     make test does not exist
       - name: Run make docs
         run: |
-          make docs
+          lxc exec u1 -- bash -c "cd starflow; make docs"
