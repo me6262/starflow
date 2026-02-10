@@ -28,9 +28,11 @@ jobs:
           lxc launch ubuntu:24.04 u1
       - name: Clone repo
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - name: push repo into LXD container
         run: |
-          lxc file push -r starflow u1/root
+          lxc file push -r . u1/root
       - name: Run make setup
         run: |
           lxc exec u1 -- bash -c "cd starflow; make setup"
