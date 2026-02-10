@@ -25,7 +25,7 @@ jobs:
         uses: canonical/setup-lxd@main
       - name: Start Container
         run: |
-          lxc launch ubuntu-24.04 u1
+          lxc launch ubuntu:24.04 u1
       - name: Clone repo
         uses: actions/checkout@v5
       - name: push repo into LXD container
