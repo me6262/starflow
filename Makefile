@@ -38,10 +38,11 @@ endif
 ifneq ($(shell which shellcheck),)
 else ifneq ($(shell which apt),)
 	sudo add-apt-repository universe
-	sudo apt install shellcheck
+	sudo apt install shellcheck -y
 ifneq ($(shell which yq),)
 else ifneq ($(shell which apt),)
-	sudo apt install yq
+	sudo add-apt-repository universe
+	sudo apt install yq -y
 endif
 else
 	$(error Cannot find shellcheck. Please install it on your system.)
