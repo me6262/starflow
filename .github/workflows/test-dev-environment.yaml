@@ -33,6 +33,7 @@ jobs:
       - name: push repo into LXD container
         run: |
           lxc file push -r . u1/root
+          lxc exec u1 -- bash -c "cd starflow && chmod -R 644 ."
       - name: Install Make in LXD Container
         run: |
           lxc exec u1 -- bash -c "apt-get install -y make"
