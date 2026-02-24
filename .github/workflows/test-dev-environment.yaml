@@ -35,7 +35,7 @@ jobs:
           lxc file push -r . u1/root
       - name: Change folder permissions
         run: |
-          lxc exec u1 -- bash -c "chmod -R 777 starflow/"
+          lxc exec u1 -- bash -c "chmod -v -R 777 ."
       - name: Install Make in LXD Container
         run: |
           lxc exec u1 -- bash -c "apt-get install -y make"
@@ -44,7 +44,7 @@ jobs:
           lxc exec u1 -- bash -c "cd starflow; make setup"
       - name: Run make lint
         run: |
-          lxc exec u1 -- bash -c "cd starflow; make lint"
+          lxc exec u1 -- bash -c "cd starflow; sudo make lint"
       - name: Run make format
         run: |
           lxc exec u1 -- bash -c "cd starflow; make format"
