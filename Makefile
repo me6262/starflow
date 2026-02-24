@@ -36,8 +36,8 @@ else
 	$(error Cannot find npx. Please install it on your system.)
 endif
 ifneq ($(shell which shellcheck),)
-else ifneq ($(shell which snap),)
-	sudo snap install shellcheck
+else ifneq ($(shell which apt),)
+	sudo apt install shellcheck -y
 ifneq ($(shell which yq),)
 else ifneq ($(shell which snap),)
 	sudo snap install yq
