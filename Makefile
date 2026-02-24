@@ -37,7 +37,8 @@ else
 endif
 ifneq ($(shell which shellcheck),)
 else ifneq ($(shell which apt),)
-	sudo apt install shellcheck -y
+	sudo add-apt-repository universe
+	sudo apt install shellcheck
 ifneq ($(shell which yq),)
 else ifneq ($(shell which snap),)
 	sudo snap install yq
