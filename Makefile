@@ -40,8 +40,8 @@ else ifneq ($(shell which apt),)
 	sudo add-apt-repository universe
 	sudo apt install shellcheck
 ifneq ($(shell which yq),)
-else ifneq ($(shell which snap),)
-	sudo snap install yq
+else ifneq ($(shell which apt),)
+	sudo apt install yq
 endif
 else
 	$(error Cannot find shellcheck. Please install it on your system.)
