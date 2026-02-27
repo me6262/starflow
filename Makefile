@@ -49,9 +49,6 @@ else ifneq ($(shell which apt),)
 	endif
 	sudo apt install yq -y
 endif
-else
-	$(error Cannot find shellcheck. Please install it on your system.)
-endif
 
 .PHONY: setup-tests
 setup-tests:
