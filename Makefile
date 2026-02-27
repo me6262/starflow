@@ -33,7 +33,7 @@ ifneq ($(shell which npx),)
 else ifneq ($(shell which snap),)
 	sudo snap install --classic --channel 22 node
 else ifneq ($(shell which apt),)
-	sudo apt install nodejs
+	sudo apt install nodejs -y
 else
 	$(error Cannot find npx. Please install it on your system.)
 endif
