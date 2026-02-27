@@ -32,6 +32,8 @@ setup-lint:
 ifneq ($(shell which npx),)
 else ifneq ($(shell which snap),)
 	sudo snap install --classic --channel 22 node
+else ifneq ($(shell which apt),)
+	sudo apt install nodejs
 else
 	$(error Cannot find npx. Please install it on your system.)
 endif
@@ -48,6 +50,9 @@ else ifneq ($(shell which apt),)
 		sudo add-apt-repository universe
 	endif
 	sudo apt install yq -y
+endif
+else
+	$(error Cannot find shellcheck. Please install it on your system.)
 endif
 
 .PHONY: setup-tests
