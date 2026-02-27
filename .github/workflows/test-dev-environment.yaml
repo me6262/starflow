@@ -4,7 +4,7 @@ on:
     inputs:
       test-platforms:
         type: string
-        default: '["ubuntu-22.04"]'
+        default: '["ubuntu-24.04", "ubuntu-24.04-arm"]'
         description: |
           The platforms to run fast tests on, as a JSON array.
       use-lxd:
@@ -12,12 +12,18 @@ on:
         description: |
           Whether to set up LXD on Linux runners.
         default: true
+      lxd-images:
+        type: string
+        default: '["ubuntu:24.04", "ubuntu:22.04", "debian:13"]'
+        description: |
+          the lxd container images to run
 jobs:
   test:
     name: Test Environment
     strategy:
       matrix:
         platform: ${{ fromJson(inputs.test-platforms) }}
+        lxd-images: ${{ fromJson(inputs.lxd-images) }}
 
     runs-on: "${{ matrix.platform }}"
     steps:
@@ -25,7 +31,7 @@ jobs:
         uses: canonical/setup-lxd@main
       - name: Start Container
         run: |
-          sleep 6; lxc launch ubuntu:24.04 u1
+          sleep 6; lxc launch ${{ matrix.lxd-images }} u1
       - name: Clone repo
         uses: actions/checkout@v5
         with:
@@ -33,9 +39,6 @@ jobs:
       - name: push repo into LXD container
         run: |
           lxc file push -r . u1/root
-      - name: Change folder permissions
-        run: |
-          lxc exec u1 -- bash -c "chmod -v -R 777 ."
       - name: Install Make in LXD Container
         run: |
           lxc exec u1 -- bash -c "apt-get install -y make"

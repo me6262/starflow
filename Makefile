@@ -37,8 +37,11 @@ else
 endif
 ifneq ($(shell which shellcheck),)
 else ifneq ($(shell which apt),)
-	sudo add-apt-repository universe
+	ifneq ($(cat /etc/os-release | grep ubuntu),)
+		sudo add-apt-repository universe
+	endif
 	sudo apt install shellcheck -y
+endif
 ifneq ($(shell which yq),)
 else ifneq ($(shell which apt),)
 	sudo add-apt-repository universe
