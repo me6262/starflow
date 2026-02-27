@@ -14,7 +14,7 @@ on:
         default: true
       lxd-images:
         type: string
-        default: '["ubuntu:24.04", "ubuntu:22.04", "debian:13"]'
+        default: '["ubuntu:24.04", "ubuntu:22.04", "images:debian/trixie/default"]'
         description: |
           the lxd container images to run
 jobs:

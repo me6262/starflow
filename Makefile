@@ -44,7 +44,9 @@ else ifneq ($(shell which apt),)
 endif
 ifneq ($(shell which yq),)
 else ifneq ($(shell which apt),)
-	sudo add-apt-repository universe
+	ifneq ($(cat /etc/os-release | grep ubuntu),)
+		sudo add-apt-repository universe
+	endif
 	sudo apt install yq -y
 endif
 else
