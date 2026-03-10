@@ -104,14 +104,36 @@ docs-auto:  ## Build and host docs with sphinx-autobuild
 # not be used independently.
 
 .PHONY: install-uv
-install-uv:
 ifneq ($(shell which uv),)
 else ifneq ($(shell which snap),)
-	sudo snap install --classic astral-uv
+	install-uv:
+		sudo snap install --classic astral-uv
 else ifneq ($(shell which brew),)
-	brew install uv
+	install-uv:
+		brew install uv
 else ifeq ($(OS),Windows_NT)
-	pwsh -c "irm https://astral.sh/uv/install.ps1 | iex"
+	install-uv:
+		pwsh -c "irm https://astral.sh/uv/install.ps1 | iex"
 else
-	curl -LsSf https://astral.sh/uv/install.sh | sh
+    ifeq ($(shell which curl),)
+		install-uv: install-curl
+			curl -LsSf https://astral.sh/uv/install.sh | sh
+    else
+		install-uv:
+			curl -LsSf https://astral.sh/uv/install.sh | sh
+    endif
 endif
+
+
+.PHONY: install-curl
+install-curl:
+ifneq ($(shell which snap),)
+	sudo snap install --classic curl
+else ifneq ($(shell which apt),)
+	sudo apt install curl -y
+else ifneq ($(shell which brew),)
+	brew install curl
+else
+	$(error curl not installed to download uv. please install one of these on your system)
+endif
+
