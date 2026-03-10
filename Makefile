@@ -104,7 +104,9 @@ docs-auto:  ## Build and host docs with sphinx-autobuild
 # not be used independently.
 
 .PHONY: install-uv
+install-uv:
 ifneq ($(shell which uv),)
+	install-uv:
 else ifneq ($(shell which snap),)
 	install-uv:
 		sudo snap install --classic astral-uv
@@ -136,4 +138,3 @@ else ifneq ($(shell which brew),)
 else
 	$(error curl not installed to download uv. please install one of these on your system)
 endif
-
