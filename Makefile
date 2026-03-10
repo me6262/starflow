@@ -39,16 +39,16 @@ else
 endif
 ifneq ($(shell which shellcheck),)
 else ifneq ($(shell which apt),)
-	ifneq ($(cat /etc/os-release | grep ubuntu),)
+    ifneq ($(cat /etc/os-release | grep ubuntu),)
 		sudo add-apt-repository universe
-	endif
+    endif
 	sudo apt install shellcheck -y
 endif
 ifneq ($(shell which yq),)
 else ifneq ($(shell which apt),)
-	ifneq ($(cat /etc/os-release | grep ubuntu),)
+    ifneq ($(cat /etc/os-release | grep ubuntu),)
 		sudo add-apt-repository universe
-	endif
+    endif
 	sudo apt install yq -y
 else
 	$(error Cannot find shellcheck. Please install it on your system.)
