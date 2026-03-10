@@ -116,14 +116,12 @@ else ifneq ($(shell which brew),)
 else ifeq ($(OS),Windows_NT)
 	install-uv:
 		pwsh -c "irm https://astral.sh/uv/install.ps1 | iex"
+else ifeq ($(shell which curl),)
+    install-uv: install-curl
+		curl -LsSf https://astral.sh/uv/install.sh | sh
 else
-    ifeq ($(shell which curl),)
-		install-uv: install-curl
-			curl -LsSf https://astral.sh/uv/install.sh | sh
-    else
-		install-uv:
-			curl -LsSf https://astral.sh/uv/install.sh | sh
-    endif
+	install-uv:
+		curl -LsSf https://astral.sh/uv/install.sh | sh
 endif
 
 
