@@ -118,11 +118,12 @@ else ifeq ($(OS),Windows_NT)
 		pwsh -c "irm https://astral.sh/uv/install.ps1 | iex"
 else ifeq ($(shell which curl),)
     install-uv: install-curl
-		source "$$HOME/.local/bin/env"
 		curl -LsSf https://astral.sh/uv/install.sh | sh
+		source "$$HOME/.local/bin/env"
 else
 	install-uv:
 		curl -LsSf https://astral.sh/uv/install.sh | sh
+		source "$$HOME/.local/bin/env"
 endif
 
 
