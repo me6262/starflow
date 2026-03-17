@@ -119,6 +119,7 @@ else ifeq ($(OS),Windows_NT)
 else ifeq ($(shell which curl),)
     install-uv: install-curl
 		curl -LsSf https://astral.sh/uv/install.sh | sh
+		ls -a $$HOME/.local/bin/
 		export PATH="$$PATH:$$HOME/.local/bin"
 		echo $$PATH
 else
