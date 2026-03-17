@@ -119,11 +119,13 @@ else ifeq ($(OS),Windows_NT)
 else ifeq ($(shell which curl),)
     install-uv: install-curl
 		curl -LsSf https://astral.sh/uv/install.sh | sh
-		source "~/.local/bin/env"
+		echo $$HOME
+		source "$$HOME/.local/bin/env"
 else
 	install-uv:
 		curl -LsSf https://astral.sh/uv/install.sh | sh
-		source "~/.local/bin/env"
+		echo $$HOME
+		source "$$HOME/.local/bin/env"
 endif
 
 
