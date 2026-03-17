@@ -120,10 +120,12 @@ else ifeq ($(shell which curl),)
     install-uv: install-curl
 		curl -LsSf https://astral.sh/uv/install.sh | sh
 		. $$HOME/.local/bin/env
+		echo $$PATH
 else
 	install-uv:
 		curl -LsSf https://astral.sh/uv/install.sh | sh
 		. $$HOME/.local/bin/env
+		echo $$PATH
 endif
 
 
